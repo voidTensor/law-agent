@@ -42,7 +42,7 @@ app.post('/api/polish', async (req, res) => {
     const body = {
       model: "baidu/ERNIE-4.5-300B-A47B", // 我们使用官方示例中的这个模型名
       messages: [{ role: "user", content: prompt }],
-      max_tokens: 1024,
+      max_tokens: 2048,
       temperature: 0.5,
     };
 
@@ -100,12 +100,12 @@ app.post('/api/framework', async (req, res) => {
       return res.status(400).json({ error: '没有提供主题或案情' });
     }
     // 1. 新prompt：让LLM输出写作框架+检索关键词
-    const prompt = `你是一位法律写作专家，请根据以下主题或案情，生成一份详细的法律文书写作框架（包括主要结构、各部分要点、建议论证思路），并在最后单独列出本案可用于检索的关键词（5个以内，中文空格分隔，格式为"检索关键词：xxx xxx xxx"），不要解释。\n\n主题/案情：\n"${topic}"\n\n写作框架：`;
+    const prompt = `你是一位法律写作专家，请根据以下主题或案情，用标准的文档格式（不要用markdown格式）生成一份详细的法律文书写作框架（包括主要结构、各部分要点、建议论证思路），并在最后单独列出本案可用于检索的关键词（5个以内，中文空格分隔，格式为"检索关键词：xxx xxx xxx"），不要解释。\n\n主题/案情：\n"${topic}"\n\n写作框架：`;
     const url = "https://api.siliconflow.cn/v1/chat/completions";
     const body = {
       model: "baidu/ERNIE-4.5-300B-A47B",
       messages: [{ role: "user", content: prompt }],
-      max_tokens: 1024,
+      max_tokens: 4096,
       temperature: 0.5,
     };
     const headers = {
