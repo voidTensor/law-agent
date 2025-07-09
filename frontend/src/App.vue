@@ -36,9 +36,9 @@ const handleFramework = async () => {
   frameworkError.value = '';
   
   try {
-    const response = await axios.post('http://localhost:3000/api/framework', {
-      topic: writingTheme.value
-    });
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const frameworkUrl = `${baseUrl}/api/framework`;
+    const response = await axios.post(frameworkUrl, { topic: yourTopic });
     framework.value = response.data.framework;
     keywords.value = response.data.keywords || '';
   } catch (error) {
