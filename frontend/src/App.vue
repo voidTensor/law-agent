@@ -36,9 +36,9 @@ const handleFramework = async () => {
   frameworkError.value = '';
   
   try {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:10000';
     const frameworkUrl = `${baseUrl}/api/framework`;
-    const response = await axios.post(frameworkUrl, { topic: yourTopic });
+    const response = await axios.post(frameworkUrl, { topic: writingTheme.value});
     framework.value = response.data.framework;
     keywords.value = response.data.keywords || '';
   } catch (error) {
@@ -61,7 +61,7 @@ const handlePolish = async () => {
   errorMessage.value = '';
   
   try {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:10000';
     const url = `${baseUrl}/api/polish`;
     const response = await axios.post(url, {
       originalText: originalText.value,
