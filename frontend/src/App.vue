@@ -61,8 +61,10 @@ const handlePolish = async () => {
   errorMessage.value = '';
   
   try {
-    const response = await axios.post('http://localhost:3000/api/polish', {
-      originalText: originalText.value
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const url = `${baseUrl}/api/polish`;
+    const response = await axios.post(url, {
+      originalText: originalText.value,
     });
     polishedText.value = response.data.polishedText;
   } catch (error) {
