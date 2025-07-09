@@ -7,7 +7,7 @@ const cors = require('cors');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args)); // 兼容node-fetch
 const cheerio = require('cheerio'); // 用于解析HTML
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // 设置中间件
 app.use(cors());
