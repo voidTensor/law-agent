@@ -97,7 +97,7 @@ const handlePolish = async () => {
             class="framework-btn"
           >
             <span v-if="isFrameworkLoading" class="btn-loader"></span>
-            {{ isFrameworkLoading ? '生成中...' : '生成写作框架' }}
+            {{ isFrameworkLoading ? '生成中...（可能需要30秒以上）' : '生成写作框架' }}
           </button>
         </div>
         
